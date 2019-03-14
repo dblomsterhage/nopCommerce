@@ -256,9 +256,12 @@ namespace Nop.Services.Media
         /// <returns>Local picture thumb path</returns>
         protected virtual string GetThumbUrl(string thumbFileName, string storeLocation = null)
         {
-            storeLocation = !string.IsNullOrEmpty(storeLocation)
-                                    ? storeLocation
-                                    : _webHelper.GetStoreLocation();
+            storeLocation = _mediaSettings.UseAbsoluteImagePath ? storeLocation : "/";
+
+            storeLocation = string.IsNullOrEmpty(storeLocation)
+                                    ? _webHelper.GetStoreLocation()
+                                    : storeLocation;
+
             var url = storeLocation + "images/thumbs/";
 
             if (_mediaSettings.MultipleThumbDirectories)
@@ -463,9 +466,11 @@ namespace Nop.Services.Media
 
             if (targetSize == 0)
             {
-                var url = (!string.IsNullOrEmpty(storeLocation)
-                                 ? storeLocation
-                                 : _webHelper.GetStoreLocation())
+                storeLocation = _mediaSettings.UseAbsoluteImagePath ? storeLocation : "/";
+
+                var url = (string.IsNullOrEmpty(storeLocation)
+                                 ? _webHelper.GetStoreLocation()
+                                 : storeLocation)
                                  + "images/" + defaultImageFileName;
                 return url;
             }
