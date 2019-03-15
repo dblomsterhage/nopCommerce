@@ -532,20 +532,17 @@ namespace Nop.Services.Media
             string storeLocation = null,
             PictureType defaultPictureType = PictureType.Entity)
         {
-            var url = showDefaultPicture ? GetDefaultPictureUrl(targetSize, defaultPictureType, storeLocation) : string.Empty;
-
             if (picture == null)
-                return url;
+                return showDefaultPicture ? GetDefaultPictureUrl(targetSize, defaultPictureType, storeLocation) : string.Empty;
 
             byte[] pictureBinary = null;
-
             if (picture.IsNew)
             {
                 DeletePictureThumbs(picture);
                 pictureBinary = LoadPictureBinary(picture);
 
                 if ((pictureBinary?.Length ?? 0) == 0)
-                    return url;
+                    return showDefaultPicture ? GetDefaultPictureUrl(targetSize, defaultPictureType, storeLocation) : string.Empty;
 
                 //we do not validate picture binary here to ensure that no exception ("Parameter is not valid") will be thrown
                 picture = UpdatePicture(picture.Id,
@@ -558,23 +555,11 @@ namespace Nop.Services.Media
                     false);
             }
 
-            var seoFileName = picture.SeoFilename; // = GetPictureSeName(picture.SeoFilename); //just for sure
-
-            var lastPart = GetFileExtensionFromMimeType(picture.MimeType);
-            string thumbFileName;
-            if (targetSize == 0)
-            {
-                thumbFileName = !string.IsNullOrEmpty(seoFileName)
-                    ? $"{picture.Id:0000000}_{seoFileName}.{lastPart}"
-                    : $"{picture.Id:0000000}.{lastPart}";
-            }
-            else
-            {
-                thumbFileName = !string.IsNullOrEmpty(seoFileName)
-                    ? $"{picture.Id:0000000}_{seoFileName}_{targetSize}.{lastPart}"
-                    : $"{picture.Id:0000000}_{targetSize}.{lastPart}";
-            }
-
+            var thumbFileName = string.Format(NopMediaDefaults.ImageThumbsFormat,
+                picture.Id,
+                !string.IsNullOrEmpty(picture.SeoFilename) ? $"_{picture.SeoFilename}" : string.Empty,
+                targetSize != 0 ? $"_{targetSize}" : string.Empty,
+                GetFileExtensionFromMimeType(picture.MimeType));
             var thumbFilePath = GetThumbLocalPath(thumbFileName);
 
             //the named mutex helps to avoid creating the same files in different threads,
@@ -591,7 +576,7 @@ namespace Nop.Services.Media
                         pictureBinary = pictureBinary ?? LoadPictureBinary(picture);
 
                         if ((pictureBinary?.Length ?? 0) == 0)
-                            return url;
+                            return showDefaultPicture ? GetDefaultPictureUrl(targetSize, defaultPictureType, storeLocation) : string.Empty;
 
                         byte[] pictureBinaryResized;
                         if (targetSize != 0)
@@ -621,8 +606,7 @@ namespace Nop.Services.Media
                 }
             }
 
-            url = GetThumbUrl(thumbFileName, storeLocation);
-            return url;
+            return GetThumbUrl(thumbFileName, storeLocation);
         }
 
         /// <summary>

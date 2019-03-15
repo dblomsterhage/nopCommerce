@@ -29,6 +29,17 @@
         public static string ImageThumbsPath => @"images\thumbs";
 
         /// <summary>
+        /// Gets a format of image thumbs files
+        /// </summary>
+        /// <remarks>
+        /// {0} : picture identifier (e.g. id = 1 will be 0000001)
+        /// {1} : picture SEO name
+        /// {2} : picture size (if different from the original)
+        /// {3} : picture extension
+        /// </remarks>
+        public static string ImageThumbsFormat => "{0:d7}{1}{2}.{3}";
+
+        /// <summary>
         /// Gets a default avatar file name
         /// </summary>
         public static string DefaultAvatarFileName => "default-avatar.jpg";
