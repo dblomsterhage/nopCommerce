@@ -7063,7 +7063,7 @@
     <Value>When enabled, your URLs will be http://www.yourStore.com/en/ or http://www.yourStore.com/ru/ (SEO friendly).</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.Sitemap.Instructions">
-    <Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml in advanced settings.</p>]]></Value>
+    <Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml on all settings page.</p>]]></Value>
   </LocaleResource>  
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.SitemapEnabled">
     <Value>Sitemap enabled</Value>

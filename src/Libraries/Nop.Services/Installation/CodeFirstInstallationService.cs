@@ -5966,7 +5966,10 @@ namespace Nop.Services.Installation
                 SitemapIncludeCategories = true,
                 SitemapIncludeManufacturers = true,
                 SitemapIncludeProducts = false,
-                SitemapIncludeProductTags = false
+                SitemapIncludeProductTags = false,
+                SitemapIncludeBlogPosts = true,
+                SitemapIncludeNews = true,
+                SitemapIncludeTopics = true
             });
 
             settingService.SaveSetting(new SitemapXmlSettings

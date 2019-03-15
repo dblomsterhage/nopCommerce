@@ -312,7 +312,7 @@ set @resources='
     <Value>News</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.Sitemap.Instructions">
-    <Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml in advanced settings.</p>]]></Value>
+    <Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml on all settings page.</p>]]></Value>
   </LocaleResource> 
 </Language>'
 
@@ -1116,31 +1116,28 @@ BEGIN
 END
 GO
 
---add new settings (#3236)
-DECLARE @settingNameList TABLE (sname nvarchar(200));
-INSERT @settingNameList(sname) 
-VALUES 
-	('sitemapsettings.sitemapincludetopics'),
-	('sitemapsettings.sitemapincludeblogposts'),
-	('sitemapsettings.sitemapincludenews');
-
-DECLARE cur_settingName CURSOR FOR 
-	SELECT sname FROM @settingNameList
-DECLARE @settingName nvarchar(200)
-
-OPEN cur_settingName
-FETCH NEXT FROM cur_settingName INTO @settingName
-WHILE @@FETCH_STATUS = 0
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapsettings.sitemapincludetopics')
 BEGIN
-	IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = @settingName)
-	BEGIN
-		INSERT [Setting] ([Name], [Value], [StoreId])
-		VALUES (@settingName, N'True', 0)
-	END
-	FETCH NEXT FROM cur_settingName INTO @settingName
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapsettings.sitemapincludetopics', N'True', 0)
 END
-CLOSE cur_settingName
-DEALLOCATE cur_settingName
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapsettings.sitemapincludeblogposts')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapsettings.sitemapincludeblogposts', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapsettings.sitemapincludenews')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapsettings.sitemapincludenews', N'True', 0)
+END
 GO
 
 --add new settings (#3236)

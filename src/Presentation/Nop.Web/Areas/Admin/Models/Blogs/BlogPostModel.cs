@@ -22,7 +22,6 @@ namespace Nop.Web.Areas.Admin.Models.Blogs
             AvailableLanguages = new List<SelectListItem>();
             SelectedStoreIds = new List<int>();
             AvailableStores = new List<SelectListItem>();
-            IncludeInSitemap = true;
         }
 
         #endregion

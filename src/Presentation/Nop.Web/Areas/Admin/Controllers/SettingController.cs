@@ -1213,15 +1213,15 @@ namespace Nop.Web.Areas.Admin.Controllers
             //terms of service
             commonSettings.PopupForTermsOfServiceLinks = model.StoreInformationSettings.PopupForTermsOfServiceLinks;
             //sitemap
-            sitemapSettings.SitemapEnabled = model.StoreInformationSettings.SitemapEnabled;
-            sitemapSettings.SitemapPageSize = model.StoreInformationSettings.SitemapPageSize;
-            sitemapSettings.SitemapIncludeCategories = model.StoreInformationSettings.SitemapIncludeCategories;
-            sitemapSettings.SitemapIncludeManufacturers = model.StoreInformationSettings.SitemapIncludeManufacturers;
-            sitemapSettings.SitemapIncludeProducts = model.StoreInformationSettings.SitemapIncludeProducts;
-            sitemapSettings.SitemapIncludeProductTags = model.StoreInformationSettings.SitemapIncludeProductTags;
-            sitemapSettings.SitemapIncludeBlogPosts = model.StoreInformationSettings.SitemapIncludeBlogPosts;
-            sitemapSettings.SitemapIncludeNews = model.StoreInformationSettings.SitemapIncludeNews;
-            sitemapSettings.SitemapIncludeTopics = model.StoreInformationSettings.SitemapIncludeTopics;
+            sitemapSettings.SitemapEnabled = model.SitemapSettings.SitemapEnabled;
+            sitemapSettings.SitemapPageSize = model.SitemapSettings.SitemapPageSize;
+            sitemapSettings.SitemapIncludeCategories = model.SitemapSettings.SitemapIncludeCategories;
+            sitemapSettings.SitemapIncludeManufacturers = model.SitemapSettings.SitemapIncludeManufacturers;
+            sitemapSettings.SitemapIncludeProducts = model.SitemapSettings.SitemapIncludeProducts;
+            sitemapSettings.SitemapIncludeProductTags = model.SitemapSettings.SitemapIncludeProductTags;
+            sitemapSettings.SitemapIncludeBlogPosts = model.SitemapSettings.SitemapIncludeBlogPosts;
+            sitemapSettings.SitemapIncludeNews = model.SitemapSettings.SitemapIncludeNews;
+            sitemapSettings.SitemapIncludeTopics = model.SitemapSettings.SitemapIncludeTopics;
 
             //use response compression
             commonSettings.UseResponseCompression = model.StoreInformationSettings.UseResponseCompression;
@@ -1241,15 +1241,15 @@ namespace Nop.Web.Areas.Admin.Controllers
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.SubjectFieldOnContactUsForm, model.StoreInformationSettings.SubjectFieldOnContactUsForm_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.UseSystemEmailForContactUsForm, model.StoreInformationSettings.UseSystemEmailForContactUsForm_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.PopupForTermsOfServiceLinks, model.StoreInformationSettings.PopupForTermsOfServiceLinks_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapEnabled, model.StoreInformationSettings.SitemapEnabled_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapPageSize, model.StoreInformationSettings.SitemapPageSize_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeCategories, model.StoreInformationSettings.SitemapIncludeCategories_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeManufacturers, model.StoreInformationSettings.SitemapIncludeManufacturers_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeProducts, model.StoreInformationSettings.SitemapIncludeProducts_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeProductTags, model.StoreInformationSettings.SitemapIncludeProductTags_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeBlogPosts, model.StoreInformationSettings.SitemapIncludeBlogPosts_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeNews, model.StoreInformationSettings.SitemapIncludeNews_OverrideForStore, storeScope, false);
-            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeTopics, model.StoreInformationSettings.SitemapIncludeTopics_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapEnabled, model.SitemapSettings.SitemapEnabled_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapPageSize, model.SitemapSettings.SitemapPageSize_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeCategories, model.SitemapSettings.SitemapIncludeCategories_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeManufacturers, model.SitemapSettings.SitemapIncludeManufacturers_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeProducts, model.SitemapSettings.SitemapIncludeProducts_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeProductTags, model.SitemapSettings.SitemapIncludeProductTags_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeBlogPosts, model.SitemapSettings.SitemapIncludeBlogPosts_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeNews, model.SitemapSettings.SitemapIncludeNews_OverrideForStore, storeScope, false);
+            _settingService.SaveSettingOverridablePerStore(sitemapSettings, x => x.SitemapIncludeTopics, model.SitemapSettings.SitemapIncludeTopics_OverrideForStore, storeScope, false);
             _settingService.SaveSettingOverridablePerStore(commonSettings, x => x.UseResponseCompression, model.StoreInformationSettings.UseResponseCompression_OverrideForStore, storeScope, false);
 
             //now clear settings cache

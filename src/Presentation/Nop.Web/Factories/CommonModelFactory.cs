@@ -72,8 +72,8 @@ namespace Nop.Web.Factories
         private readonly IPictureService _pictureService;
         private readonly IProductService _productService;
         private readonly IProductTagService _productTagService;
-        private readonly ISitemapGenerator _sitemapGenerator;
         private readonly IShoppingCartService _shoppingCartService;
+        private readonly ISitemapGenerator _sitemapGenerator;
         private readonly IStaticCacheManager _cacheManager;
         private readonly IStoreContext _storeContext;
         private readonly IThemeContext _themeContext;
@@ -94,7 +94,8 @@ namespace Nop.Web.Factories
 
         #region Ctor
 
-        public CommonModelFactory(BlogSettings blogSettings,
+        public CommonModelFactory(
+            BlogSettings blogSettings,
             CaptchaSettings captchaSettings,
             CatalogSettings catalogSettings,
             CommonSettings commonSettings,
@@ -118,8 +119,8 @@ namespace Nop.Web.Factories
             IPictureService pictureService,
             IProductService productService,
             IProductTagService productTagService,
-            ISitemapGenerator sitemapGenerator,
             IShoppingCartService shoppingCartService,
+            ISitemapGenerator sitemapGenerator,
             IStaticCacheManager cacheManager,
             IStoreContext storeContext,
             IThemeContext themeContext,
@@ -136,47 +137,47 @@ namespace Nop.Web.Factories
             StoreInformationSettings storeInformationSettings,
             VendorSettings vendorSettings)
         {
+            this._actionContextAccessor = actionContextAccessor;
             this._blogService = blogService;
             this._blogSettings = blogSettings;
+            this._cacheManager = cacheManager;
             this._captchaSettings = captchaSettings;
             this._catalogSettings = catalogSettings;
-            this._commonSettings = commonSettings;
-            this._customerSettings = customerSettings;
-            this._displayDefaultFooterItemSettings = displayDefaultFooterItemSettings;
-            this._forumSettings = forumSettings;
-            this._actionContextAccessor = actionContextAccessor;
             this._categoryService = categoryService;
+            this._commonSettings = commonSettings;
             this._currencyService = currencyService;
             this._customerService = customerService;
+            this._customerSettings = customerSettings;
+            this._displayDefaultFooterItemSettings = displayDefaultFooterItemSettings;
+            this._fileProvider = fileProvider;
             this._forumService = forumService;
+            this._forumSettings = forumSettings;
             this._genericAttributeService = genericAttributeService;
             this._languageService = languageService;
             this._localizationService = localizationService;
+            this._localizationSettings = localizationSettings;
             this._manufacturerService = manufacturerService;
             this._newsService = newsService;
-            this._fileProvider = fileProvider;
+            this._newsSettings = newsSettings;
             this._pageHeadBuilder = pageHeadBuilder;
             this._permissionService = permissionService;
             this._pictureService = pictureService;
             this._productService = productService;
             this._productTagService = productTagService;
+            this._shoppingCartService = shoppingCartService;
             this._sitemapGenerator = sitemapGenerator;
             this._sitemapSettings = sitemapSettings;
             this._sitemapXmlSettings = sitemapXmlSettings;
-            this._shoppingCartService = shoppingCartService;
-            this._cacheManager = cacheManager;
             this._storeContext = storeContext;
+            this._storeInformationSettings = storeInformationSettings;
             this._themeContext = themeContext;
             this._themeProvider = themeProvider;
             this._topicService = topicService;
             this._urlHelperFactory = urlHelperFactory;
             this._urlRecordService = urlRecordService;
+            this._vendorSettings = vendorSettings;
             this._webHelper = webHelper;
             this._workContext = workContext;
-            this._localizationSettings = localizationSettings;
-            this._newsSettings = newsSettings;
-            this._storeInformationSettings = storeInformationSettings;
-            this._vendorSettings = vendorSettings;
         }
 
         #endregion
