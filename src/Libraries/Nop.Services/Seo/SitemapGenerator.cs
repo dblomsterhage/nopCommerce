@@ -187,64 +187,60 @@ namespace Nop.Services.Seo
             var sitemapUrls = new List<SitemapUrl>
             {
                 //home page
-                GetLocalizedSitemapUrl("HomePage"),
+                GetLocalizedSitemapUrl("HomePage")
+            };           
 
+            if (_sitemapXmlSettings.SitemapXmlEnabled)
+            {
                 //search products
-                GetLocalizedSitemapUrl("ProductSearch"),
-
+                sitemapUrls.Add(GetLocalizedSitemapUrl("ProductSearch"));
                 //contact us
-                GetLocalizedSitemapUrl("ContactUs")
-            };
+                sitemapUrls.Add(GetLocalizedSitemapUrl("ContactUs"));
 
-            //news
-            if (_newsSettings.Enabled)
-            {
-                sitemapUrls.Add(GetLocalizedSitemapUrl("NewsArchive"));
+                //news
+                if (_newsSettings.Enabled)
+                    sitemapUrls.Add(GetLocalizedSitemapUrl("NewsArchive"));
+
+                //blog
+                if (_blogSettings.Enabled)
+                    sitemapUrls.Add(GetLocalizedSitemapUrl("Blog"));
+
+                //forum
+                if (_forumSettings.ForumsEnabled)
+                    sitemapUrls.Add(GetLocalizedSitemapUrl("Boards"));
+
+                //news
+                if (_sitemapXmlSettings.SitemapXmlIncludeNews)
+                    sitemapUrls.AddRange(GetNewsItemUrls());
+
+                //categories
+                if (_sitemapXmlSettings.SitemapXmlIncludeCategories)
+                    sitemapUrls.AddRange(GetCategoryUrls());
+
+                //manufacturers
+                if (_sitemapXmlSettings.SitemapXmlIncludeManufacturers)
+                    sitemapUrls.AddRange(GetManufacturerUrls());
+
+                //products
+                if (_sitemapXmlSettings.SitemapXmlIncludeProducts)
+                    sitemapUrls.AddRange(GetProductUrls());
+
+                //product tags
+                if (_sitemapXmlSettings.SitemapXmlIncludeProductTags)
+                    sitemapUrls.AddRange(GetProductTagUrls());
+
+                //blog posts
+                if (_sitemapXmlSettings.SitemapXmlIncludeBlogPosts)
+                    sitemapUrls.AddRange(GetBlogPostUrls());
+
+                //topics
+                if (_sitemapXmlSettings.SitemapXmlIncludeTopics)
+                    sitemapUrls.AddRange(GetTopicUrls());
+
+                //custom URLs
+                if (_sitemapXmlSettings.SitemapXmlIncludeCustomUrls)
+                    sitemapUrls.AddRange(GetCustomUrls());
             }
-
-            //blog
-            if (_blogSettings.Enabled)
-            {
-                sitemapUrls.Add(GetLocalizedSitemapUrl("Blog"));
-            }
-
-            //forum
-            if (_forumSettings.ForumsEnabled)
-            {
-                sitemapUrls.Add(GetLocalizedSitemapUrl("Boards"));
-            }
-
-            //news
-            if (_sitemapXmlSettings.SitemapXmlIncludeNews)
-                sitemapUrls.AddRange(GetNewsItemUrls());
-
-            //categories
-            if (_sitemapXmlSettings.SitemapXmlIncludeCategories)
-                sitemapUrls.AddRange(GetCategoryUrls());
-
-            //manufacturers
-            if (_sitemapXmlSettings.SitemapXmlIncludeManufacturers)
-                sitemapUrls.AddRange(GetManufacturerUrls());
-
-            //products
-            if (_sitemapXmlSettings.SitemapXmlIncludeProducts)
-                sitemapUrls.AddRange(GetProductUrls());
-
-            //product tags
-            if (_sitemapXmlSettings.SitemapXmlIncludeProductTags)
-                sitemapUrls.AddRange(GetProductTagUrls());
-
-            //blog posts
-            if (_sitemapXmlSettings.SitemapXmlIncludeBlogPosts)
-                sitemapUrls.AddRange(GetBlogPostUrls());
-
-            //topics
-            if (_sitemapXmlSettings.SitemapXmlIncludeTopics)
-                sitemapUrls.AddRange(GetTopicUrls());
-
-            //custom URLs
-            if (_sitemapXmlSettings.SitemapXmlIncludeCustomUrls)
-                sitemapUrls.AddRange(GetCustomUrls());
 
             return sitemapUrls;
         }

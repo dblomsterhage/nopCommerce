@@ -1650,16 +1650,6 @@ namespace Nop.Web.Areas.Admin.Controllers
             return RedirectToAction("GeneralCommon");
         }
 
-        [HttpPost, ActionName("GeneralCommon")]
-        [FormValueRequired("sitemapxmlsettings")]
-        public virtual IActionResult SitemapXmlSettings()
-        {
-            if (!_permissionService.Authorize(StandardPermissionProvider.ManageSettings))
-                return AccessDeniedView();
-
-            return RedirectToAction("AllSettings", "Setting", new { name = "sitemapxml" });
-        }
-
         public virtual IActionResult AllSettings(string name = "")
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageSettings))

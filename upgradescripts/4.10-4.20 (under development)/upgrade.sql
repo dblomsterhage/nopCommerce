@@ -312,7 +312,7 @@ set @resources='
     <Value>News</Value>
   </LocaleResource>
   <LocaleResource Name="Admin.Configuration.Settings.GeneralCommon.Sitemap.Instructions">
-    <Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml on all settings page.</p>]]></Value>
+	<Value><![CDATA[<p>These settings do not apply to sitemap.xml, only for your site map. You can configure generation for sitemap.xml on all settings page.</p>]]></Value>
   </LocaleResource> 
 </Language>'
 
@@ -1140,40 +1140,76 @@ BEGIN
 END
 GO
 
---add new settings (#3236)
-DECLARE @settingNameList TABLE (sname nvarchar(200));
-INSERT @settingNameList(sname) 
-VALUES 
-	('sitemapxmlsettings.sitemapxmlenabled'), 
-	('sitemapxmlsettings.sitemapxmlincludeblogposts'), 
-	('sitemapxmlsettings.sitemapxmlincludecategories'),
-	('sitemapxmlsettings.sitemapxmlincludecustomurls'),
-	('sitemapxmlsettings.sitemapxmlincludemanufacturers'),
-	('sitemapxmlsettings.sitemapxmlincludeproducts'),
-	('sitemapxmlsettings.sitemapxmlincludeproducttags'),
-	('sitemapxmlsettings.sitemapxmlincludetopics'),
-	('sitemapxmlsettings.sitemapxmlincludenews'),
-	('sitemapsettings.sitemapincludetopics'),
-	('sitemapsettings.sitemapincludeblogposts'),
-	('sitemapsettings.sitemapincludenews');
-
-DECLARE cur_settingName CURSOR FOR 
-	SELECT sname FROM @settingNameList
-DECLARE @settingName nvarchar(200)
-
-OPEN cur_settingName
-FETCH NEXT FROM cur_settingName INTO @settingName
-WHILE @@FETCH_STATUS = 0
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlenabled')
 BEGIN
-	IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = @settingName)
-	BEGIN
-		INSERT [Setting] ([Name], [Value], [StoreId])
-		VALUES (@settingName, N'True', 0)
-	END
-	FETCH NEXT FROM cur_settingName INTO @settingName
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlenabled', N'True', 0)
 END
-CLOSE cur_settingName
-DEALLOCATE cur_settingName
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludeblogposts')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludeblogposts', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludecategories')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludecategories', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludecustomurls')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludecustomurls', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludemanufacturers')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludemanufacturers', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludeproducts')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludeproducts', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludeproducttags')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludeproducttags', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludetopics')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludetopics', N'True', 0)
+END
+GO
+
+--new setting
+IF NOT EXISTS (SELECT 1 FROM [Setting] WHERE [Name] = N'sitemapxmlsettings.sitemapxmlincludenews')
+BEGIN
+    INSERT [Setting] ([Name], [Value], [StoreId])
+    VALUES (N'sitemapxmlsettings.sitemapxmlincludenews', N'True', 0)
+END
 GO
 
 --update old settings (#3236)

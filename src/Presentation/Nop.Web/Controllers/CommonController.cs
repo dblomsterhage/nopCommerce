@@ -302,9 +302,6 @@ namespace Nop.Web.Controllers
         [CheckAccessClosedStore(true)]
         public virtual IActionResult SitemapXml(int? id)
         {
-            if (!_sitemapXmlSettings.SitemapXmlEnabled)
-                return RedirectToRoute("HomePage");
-
             var siteMap = _commonModelFactory.PrepareSitemapXml(id);
             return Content(siteMap, "text/xml");
         }
