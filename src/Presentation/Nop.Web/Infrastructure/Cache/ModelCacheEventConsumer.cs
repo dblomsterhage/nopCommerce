@@ -388,16 +388,19 @@ namespace Nop.Web.Infrastructure.Cache
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagPopularPatternKey);
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagByProductPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityUpdatedEvent<ProductTag> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagPopularPatternKey);
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagByProductPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityDeletedEvent<ProductTag> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagPopularPatternKey);
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.ProductTagByProductPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
 
         //related products
@@ -578,14 +581,17 @@ namespace Nop.Web.Infrastructure.Cache
         public void HandleEvent(EntityInsertedEvent<BlogPost> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.BlogPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityUpdatedEvent<BlogPost> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.BlogPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityDeletedEvent<BlogPost> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.BlogPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
 
         //Blog comments
@@ -598,14 +604,17 @@ namespace Nop.Web.Infrastructure.Cache
         public void HandleEvent(EntityInsertedEvent<NewsItem> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.NewsPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityUpdatedEvent<NewsItem> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.NewsPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         public void HandleEvent(EntityDeletedEvent<NewsItem> eventMessage)
         {
             _cacheManager.RemoveByPattern(NopModelCacheDefaults.NewsPatternKey);
+            _cacheManager.RemoveByPattern(NopModelCacheDefaults.SitemapPatternKey);
         }
         //News comments
         public void HandleEvent(EntityDeletedEvent<NewsComment> eventMessage)
